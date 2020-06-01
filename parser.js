@@ -46,4 +46,6 @@ const parseAllFiles = (dir) => {
     })
 }
 
-parseAllFiles('./data')
+const runDir = process.argv[2] || './data'
+
+parseAllFiles(runDir)
