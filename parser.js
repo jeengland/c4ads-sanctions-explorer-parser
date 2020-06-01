@@ -1,9 +1,9 @@
 const csv = require('csvtojson')
 const fs = require('fs')
 
-const parser = (filename, dir) => {
+const parse = (fileName, dir) => {
     csv()
-        .fromFile(`${dir}/${filename}.csv`)
+        .fromFile(`${dir}/${fileName}.csv`)
         .then((results) => {
             const newResults = results.map((result) => {
                 let newResult = {}
@@ -17,7 +17,7 @@ const parser = (filename, dir) => {
             return newResults;
         })
         .then((results) => {
-            fs.writeFile(`./json/${filename}.json`, JSON.stringify(results, null, "\t"), (err) => {
+            fs.writeFile(`./json/${fileName}.json`, JSON.stringify(results, null, "\t"), (err) => {
                 if (err) {
                     throw err
                 };
@@ -26,17 +26,24 @@ const parser = (filename, dir) => {
         })
 }
 
-const getFileNames = (dir) => {
-    fs.readdir(dir, (err, files) => {
+function getFileNames(dir) {
+    file = fs.readdirSync(dir, (err, files) => {
         if (err) {
             throw err;
         }
-        const formattedFiles = files.map((file) => {
-            return file.slice(0, file.indexOf('.csv'))
-        })
-        console.log(formattedFiles);
-        return formattedFiles;
+        return files;
+    })
+    const formattedFiles = file.map((file) => {
+        return file.slice(0, file.indexOf('.csv'))
+    })
+    return formattedFiles;
+}
+
+const parseAllFiles = (dir) => {
+    const fileNames = getFileNames(dir);
+    fileNames.forEach((fileName) => {
+        parse(fileName, dir);
     })
 }
 
-getFileNames('./data')
+parseAllFiles('./data')
