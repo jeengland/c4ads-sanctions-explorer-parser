@@ -2,7 +2,7 @@ const csv = require('csvtojson');
 const fs = require('fs');
 
 // ----- Parser to convert CSV to JSON and remove null keys -----
-const parse = (fileName, dir) => {
+const parse = (fileName, dir, middleware) => {
     // The parser accepts a directory, a filename without extension and it returns a promise
     return csv()
         .fromFile(`${dir}/${fileName}.csv`)
@@ -19,6 +19,14 @@ const parse = (fileName, dir) => {
                 return newResult;
             })
             return newResults;
+        })
+        // Run a middleware function if it exists
+        .then((results) => {
+            if (middleware) {
+                return middleware(results)
+            } else {
+                return results
+            }
         })
         .then((results) => {
             // Write the files to a json, stringify them with a tab in between values
