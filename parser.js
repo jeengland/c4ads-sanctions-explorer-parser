@@ -69,12 +69,7 @@ const parseAllFiles = (dir) => {
     })
 }
 
-// Use data folder as a default directory but accept an argument if one exists
-const runDir = process.argv[2] || './data';
-
-parseAllFiles(runDir)
-
 module.exports = {
     parse,
     parseAllFiles
-};
+}

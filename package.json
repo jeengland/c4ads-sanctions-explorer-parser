@@ -4,7 +4,7 @@
   "description": "",
   "main": "parser.js",
   "scripts": {
-    "parser": "node parser.js"
+    "parser": "node app.js"
   },
   "keywords": [],
   "author": "",
