@@ -6,6 +6,14 @@ const parse = (fileName, dir, middleware) => {
     // The parser accepts a directory, a filename without extension and it returns a promise
     return csv()
         .fromFile(`${dir}/${fileName}.csv`)
+        // Run a middleware function if it exists
+        .then((results) => {
+            if (middleware) {
+                return middleware(results)
+            } else {
+                return results
+            }
+        })
         .then((results) => {
             // Loop through each key/value pair in the new JSON object
             const newResults = results.map((result) => {
@@ -19,14 +27,6 @@ const parse = (fileName, dir, middleware) => {
                 return newResult;
             })
             return newResults;
-        })
-        // Run a middleware function if it exists
-        .then((results) => {
-            if (middleware) {
-                return middleware(results)
-            } else {
-                return results
-            }
         })
         .then((results) => {
             // Write the files to a json, stringify them with a tab in between values
@@ -59,11 +59,11 @@ function getFileNames(dir) {
 }
     
 // ----- Function to map through each CSV in a folder and run it through the parser -----
-const parseAllFiles = (dir) => {
+const parseAllFiles = (dir, middleware) => {
     const fileNames = getFileNames(dir);
     let totalFiles = 0;
     fileNames.forEach((fileName) => {
-        parse(fileName, dir)
+        parse(fileName, dir, middleware)
             .then(() => totalFiles++)
             .catch((err) => console.error(err));
     })
