@@ -35,16 +35,8 @@ const cleaner = (json) => {
 // ----- Function to normalize key names -----
 const normalize = (json) => {
     const newJson = json.map((obj) => {
-        obj.entity_type = obj.entity;
-        delete obj.entity;
         obj.cedula_number = obj.cedula_no;
         delete obj.cedula_no;
-        obj.national_identification_number = obj.national_id_no;
-        delete obj.national_id_no;
-        obj.tax_identification_number = obj.tax_id_no;
-        delete obj.tax_id_no;
-        obj.tax_identification_number_country = obj.tax_id_no_country;
-        delete obj.tax_id_no_country;
         obj.matricula_mercantil_number = obj.matricula_mercantil_no;
         delete obj.matricula_mercantil_no;
         obj.ruc_number = obj.ruc;
@@ -55,6 +47,14 @@ const normalize = (json) => {
         delete obj.electoral_registry_no;
         obj.drivers_license_number = obj.drivers_license_no;
         delete obj.drivers_license_no;
+        obj.registered_charity_number = obj.registered_charity_no;
+        delete obj.registered_charity_no;
+        obj.trade_license_number = obj.trade_license_no;
+        delete obj.trade_license_no;
+        obj.tourism_license_number = obj.tourism_license_no;
+        delete obj.tourism_license_no;
+        obj.folio_mercantil_number = obj.folio_mercantil_no;
+        delete obj.folio_mercantil_no;
         return obj;
     })
     return newJson

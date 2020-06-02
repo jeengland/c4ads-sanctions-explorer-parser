@@ -20,7 +20,7 @@ const parse = (fileName, dir, middleware) => {
                 let newResult = {};
                 for (const prop in result) {
                     // Only carry over keys if their values exist
-                    if (result[prop]) {
+                    if (result[prop] !== 'NULL' && result[prop]) {
                         newResult[prop] = result[prop];
                     }
                 }
