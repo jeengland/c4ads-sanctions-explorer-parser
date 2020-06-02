@@ -38,6 +38,9 @@ const parse = (fileName, dir, middleware) => {
             })
             return results;
         })
+        .catch((error) => {
+            console.error(error);
+        })
 }
     
 // ----- Function to get the names of all files in a folder and remove the .csv extension -----
