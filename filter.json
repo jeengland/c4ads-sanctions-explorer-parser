@@ -81,24 +81,139 @@
         ]
     },
     "organization_keys": {
-        "organization": [],
-        "organization_attributes": [],
-        "organization_contact_info": [],
-        "organization_actions": [],
-        "organization_remarks": []
+        "organization": [
+            "entity_type",
+            "entity_name",
+            "first_name",
+            "reference_number",
+            "naal_wholename"
+        ],
+        "organization_attributes": [
+            "additional_sanctions_information",
+            "duns_number",
+            "business_registration_number",
+            "commercial_registry_number",
+            "legal_entity_number",
+            "tax_identification_number",
+            "tax_identification_number_country",
+            "registaion_id",
+            "swift_bic",
+            "vat_number",
+            "file_number",
+            "government_gazette_number",
+            "public_registration_number",
+            "executive_order",
+            "business_number",
+            "chamber_of_commerce_number",
+            "license",
+            "registration_number",
+            "italian_fiscal_code",
+            "registered_charity_number",
+            "matricula_mercantil_number",
+            "linked_to",
+            "ruc_number",
+            "company_registeration_number",
+            "company_registration_number_country",
+            "certificate of incorporation_number",
+            "nationality_of_registration",
+            "branch_unit_number",
+            "enterprise_number",
+            "identification_number_country",
+            "msb_registration_number",
+            "trade_license_number",
+            "tourism_license_number",
+            "folio_mercantil_number",
+            "un_locode",
+            "aka",
+            "bik",
+            "cuit",
+            "fka",
+            "nka",
+            "nit",
+            "rfc",
+            "rif",
+            "programs",
+            "category"
+        ],
+        "organization_contact_info": [
+            "address",
+            "website",
+            "email_address",
+            "telephone",
+            "fax",
+            "telex",
+            "co"
+        ],
+        "organization_actions": [
+            "date",
+            "action",
+            "authority"
+        ],
+        "organization_remarks": [
+            "comments"
+        ]
     },
     "vessel_keys": {
-        "vessel": [],
-        "vessel_attributes": [],
-        "vessel_contact_info": [],
-        "vessel_actions": [],
-        "vessel_remarks": []
+        "vessel": [
+            "entity_name",
+            "entity_type"
+        ],
+        "vessel_attributes": [
+            "additional_sanctions_information",
+            "vessel_call_sign",
+            "tonnage_dwt",
+            "tonnage_grt",
+            "ship_type",
+            "vessel_flag",
+            "former_vessel_flag",
+            "linked_to",
+            "aka",
+            "fka",
+            "mmsi",
+            "programs",
+            "category"
+        ],
+        "vessel_contact_info": [
+            "address"
+        ],
+        "vessel_actions": [
+            "date",
+            "action",
+            "changes",
+            "authority"
+        ],
+        "vessel_remarks": [
+            "comments"
+        ]
     },
     "aircraft_keys": {
-        "aircraft": [],
-        "aircraft_attributes": [],
-        "aircraft_contact_info": [],
-        "aircraft_actions": [],
-        "aircraft_remarks": []
+        "aircraft": [
+            "entity_name",
+            "aircraft_tail_number",
+            "previous_aircraft_tail_number",
+            "entity_type"
+        ],
+        "aircraft_attributes": [
+            "nationality_of_registration",
+            "aircraft_serial_identification",
+            "aircraft_manufacturers_serial_number",
+            "linked_to",
+            "aircraft_mode_s_transponder_code",
+            "aircraft_construction_number",
+            "aircraft_operator",
+            "aircraft_manufacture_date",
+            "aircraft_model"
+        ],
+        "aircraft_contact_info": [
+            "address"
+        ],
+        "aircraft_actions": [
+            "date",
+            "action",
+            "authority"
+        ],
+        "aircraft_remarks": [
+            "comments"
+        ]
     }
 }

@@ -117,8 +117,8 @@ parser.parse('ofac', './data', formatter)
                 }
             }
         })
-        console.log(`${ind.individual.length} unique individuals`)
-        console.log(`${ind.individual_attributes.length}`)
+        // console.log(`${ind.individual.length} unique individuals`)
+        // console.log(`${ind.individual_attributes.length}`)
         fs.writeFile(`./json/individuals.json`, JSON.stringify(ind, null, "\t"), (err) => {
             if (err) {
                 throw err;
