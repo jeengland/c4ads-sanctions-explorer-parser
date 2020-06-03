@@ -99,7 +99,7 @@ parser.parse('ofac', './data', formatter)
                 result.individual_id = hash.update(id, 'utf8').digest('base64')
                 for (const table in ind) {
                     if (table === 'individual' && idList[result.individual_id]) {
-                        return null;
+                        // I can't get this statement to work inversely for some reason
                     } else {
                         const newTable = {}
                         tableKeys[table].forEach((key) => {
@@ -118,6 +118,7 @@ parser.parse('ofac', './data', formatter)
             }
         })
         console.log(`${ind.individual.length} unique individuals`)
+        console.log(`${ind.individual_attributes.length}`)
         fs.writeFile(`./json/individuals.json`, JSON.stringify(ind, null, "\t"), (err) => {
             if (err) {
                 throw err;
