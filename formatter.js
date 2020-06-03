@@ -152,6 +152,7 @@ const tableKeys = {
 
 parser.parse('ofac', './data', formatter)
     .then((results) => {
+        startTime = Date.now();
         let ind = {};
         ind.individual = [];
         ind.individual_attributes = [];
@@ -161,17 +162,17 @@ parser.parse('ofac', './data', formatter)
         results.forEach((result) => {
             if (result.entity_type === 'individual') {
                 let id = null;
-                let hash = crypto.createHash('sha1');
                 if (result.first_name && result.last_name) {
-                    id = hash.update(`${result.first_name}${result.last_name}`, 'utf8').digest('base64')
+                    id = `${result.first_name}${result.last_name}`
                 } else if (result.first_name) {
-                    id = hash.update(result.first_name, 'utf8').digest('base64')
+                    id = result.first_name
                 } else if (result.last_name) {
-                    id = hash.update(result.last_name, 'utf8').digest('base64')
+                    id = result.last_name
                 } else if (result.entity_name) {
-                    id = hash.update(result.entity_name, 'utf8').digest('base64')
+                    id = result.entity_name
                 }
-                result.individual_id = id
+                let hash = crypto.createHash('sha1');
+                result.individual_id = hash.update(id, 'utf8').digest('base64')
                 for (const table in ind) {
                     const newTable = {}
                     tableKeys[table].forEach((key) => {
@@ -190,7 +191,8 @@ parser.parse('ofac', './data', formatter)
                 if (err) {
                     throw err;
                 };
-                console.log(`Created individuals.json successfully`);
+                totalTime = Date.now() - startTime;
+                console.log(`Created individuals.json successfully in ${totalTime} ms`);
             })
         // }
     })

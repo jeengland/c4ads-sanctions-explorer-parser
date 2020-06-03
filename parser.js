@@ -3,6 +3,7 @@ const fs = require('fs');
 
 // ----- Parser to convert CSV to JSON and remove null keys -----
 const parse = (fileName, dir, middleware) => {
+    const startTime = Date.now();
     // The parser accepts a directory, a filename without extension and it returns a promise
     return csv()
         .fromFile(`${dir}/${fileName}.csv`)
@@ -34,7 +35,8 @@ const parse = (fileName, dir, middleware) => {
                 if (err) {
                     throw err;
                 };
-                console.log(`Created ${fileName}.json successfully`);
+                const totalTime = Date.now() - startTime;
+                console.log(`Created ${fileName}.json successfully in ${totalTime} ms`);
             })
             return results;
         })
