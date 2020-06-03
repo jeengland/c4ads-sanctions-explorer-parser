@@ -71,6 +71,7 @@ const formatter = (json) => {
     return json;
 }
 
+// ----- Function to run parser with formatter middleware and sort results by entity type -----
 parser.parse('ofac', './data', formatter)
     .then((results) => {
         for (tableKeys in filter) {

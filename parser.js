@@ -5,7 +5,7 @@ const fs = require('fs');
 const parse = (fileName, dir, middleware) => {
     const startTime = Date.now();
     // The parser accepts a directory, a filename without extension and it returns a promise
-    return csv()
+    return csv({ delimiter: 'auto' })
         .fromFile(`${dir}/${fileName}.csv`)
         // Run a middleware function if it exists
         .then((results) => {
