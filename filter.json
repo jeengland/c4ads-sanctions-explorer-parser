@@ -1,5 +1,5 @@
 {
-    "individual_keys": {
+    "individual": {
         "individual": [
             "individual_id",
             "last_name",
@@ -80,7 +80,7 @@
             "comments"
         ]
     },
-    "organization_keys": {
+    "organization": {
         "organization": [
             "entity_type",
             "entity_name",
@@ -153,8 +153,9 @@
             "comments"
         ]
     },
-    "vessel_keys": {
+    "vessel": {
         "vessel": [
+            "vessel_registration_identification",
             "entity_name",
             "entity_type"
         ],
@@ -186,7 +187,7 @@
             "comments"
         ]
     },
-    "aircraft_keys": {
+    "aircraft": {
         "aircraft": [
             "entity_name",
             "aircraft_tail_number",
