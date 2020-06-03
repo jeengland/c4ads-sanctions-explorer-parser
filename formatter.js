@@ -1,5 +1,6 @@
 const parser = require('./parser.js');
 const fs = require('fs');
+const crypto = require('crypto');
 
 // This script is the specific formatter for the C4ADS dataset
 // ----- Cleaner for known anomalies -----
@@ -70,11 +71,13 @@ const formatter = (json) => {
 
 const tableKeys = {
     individual: [
+        'individual_id',
         'last_name',
         'first_name',
         'entity_type'
     ],
     individual_attributes: [
+        'individual_id',
         'passport',
         'travel_document_number',
         'identification_number',
@@ -128,6 +131,7 @@ const tableKeys = {
         'citizen'
     ],
     individual_contact_info: [
+        'individual_id',
         'website',
         'email_address',
         'telephone',
@@ -135,11 +139,13 @@ const tableKeys = {
         'address'
     ],
     individual_actions: [
+        'individual_id',
         'date',
         'action',
         'authority'
     ],
     individual_remarks: [
+        'individual_id',
         'comments'
     ]
 }
@@ -154,6 +160,18 @@ parser.parse('ofac', './data', formatter)
         ind.individual_remarks = [];
         results.forEach((result) => {
             if (result.entity_type === 'individual') {
+                let id = null;
+                let hash = crypto.createHash('sha1');
+                if (result.first_name && result.last_name) {
+                    id = hash.update(`${result.first_name}${result.last_name}`, 'utf8').digest('base64')
+                } else if (result.first_name) {
+                    id = hash.update(result.first_name, 'utf8').digest('base64')
+                } else if (result.last_name) {
+                    id = hash.update(result.last_name, 'utf8').digest('base64')
+                } else if (result.entity_name) {
+                    id = hash.update(result.entity_name, 'utf8').digest('base64')
+                }
+                result.individual_id = id
                 for (const table in ind) {
                     const newTable = {}
                     tableKeys[table].forEach((key) => {
@@ -161,7 +179,7 @@ parser.parse('ofac', './data', formatter)
                             newTable[key] = result[key]
                         }
                     })
-                    if (Object.keys(newTable).length > 0) {
+                    if (Object.keys(newTable).length > 1) {
                         ind[table].push(newTable)
                     }
                 }
