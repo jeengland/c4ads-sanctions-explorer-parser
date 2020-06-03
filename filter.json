@@ -1,0 +1,103 @@
+{
+    "individual_keys": {
+        "individual": [
+            "individual_id",
+            "last_name",
+            "first_name",
+            "entity_type"
+        ],
+        "individual_attributes": [
+            "individual_id",
+            "passport",
+            "travel_document_number",
+            "identification_number",
+            "national_identification_number",
+            "curp",
+            "tax_identification_number",
+            "tax_identification_number_country",
+            "cedula",
+            "registration_number",
+            "italian_fiscal_code",
+            "matricula_mercantil_number",
+            "digital_currency_address",
+            "personal_id_card",
+            "former_citizenship_country",
+            "linked_to",
+            "cedula_number",
+            "ruc_number",
+            "nie",
+            "residency_number",
+            "seafarers_identification_document",
+            "visa_number_id",
+            "citizens_card_number",
+            "national_foreign_id_number",
+            "chinese_commercial_code",
+            "birth_certificate_number",
+            "voter_identification_number",
+            "voter_identification_number_country",
+            "electoral_registry_number",
+            "drivers_license_number",
+            "le_number",
+            "un_locode",
+            "aka",
+            "cuit",
+            "cui",
+            "dni",
+            "fka",
+            "nka",
+            "nit",
+            "ssn",
+            "rfc",
+            "programs",
+            "category",
+            "title",
+            "pob",
+            "dob",
+            "gender",
+            "nationality",
+            "additional_sanctions_information",
+            "secondary_sanctions_risk",
+            "executive_order",
+            "citizen"
+        ],
+        "individual_contact_info": [
+            "individual_id",
+            "website",
+            "email_address",
+            "telephone",
+            "co",
+            "address"
+        ],
+        "individual_actions": [
+            "individual_id",
+            "date",
+            "action",
+            "authority"
+        ],
+        "individual_remarks": [
+            "individual_id",
+            "comments"
+        ]
+    },
+    "organization_keys": {
+        "organization": [],
+        "organization_attributes": [],
+        "organization_contact_info": [],
+        "organization_actions": [],
+        "organization_remarks": []
+    },
+    "vessel_keys": {
+        "vessel": [],
+        "vessel_attributes": [],
+        "vessel_contact_info": [],
+        "vessel_actions": [],
+        "vessel_remarks": []
+    },
+    "aircraft_keys": {
+        "aircraft": [],
+        "aircraft_attributes": [],
+        "aircraft_contact_info": [],
+        "aircraft_actions": [],
+        "aircraft_remarks": []
+    }
+}
