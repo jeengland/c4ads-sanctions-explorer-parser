@@ -1,4 +1,5 @@
-const parser = require('./parser.js')
+const parser = require('./parser.js');
+const fs = require('fs');
 
 // This script is the specific formatter for the C4ADS dataset
 // ----- Cleaner for known anomalies -----
@@ -67,4 +68,111 @@ const formatter = (json) => {
     return json;
 }
 
-parser.parseAllFiles('./data', formatter)
+const tableKeys = {
+    individual: [
+        'last_name',
+        'first_name',
+        'entity_type'
+    ],
+    individual_attributes: [
+        'passport',
+        'travel_document_number',
+        'identification_number',
+        'national_identification_number',
+        'curp',
+        'tax_identification_number',
+        'tax_identification_number_country',
+        'cedula',
+        'registration_number',
+        'italian_fiscal_code',
+        'matricula_mercantil_number',
+        'digital_currency_address',
+        'personal_id_card',
+        'former_citizenship_country',
+        'linked_to',
+        'cedula_number',
+        'ruc_number',
+        'nie',
+        'residency_number',
+        'seafarers_identification_document',
+        'visa_number_id',
+        'citizens_card_number',
+        'national_foreign_id_number',
+        'chinese_commercial_code',
+        'birth_certificate_number',
+        'voter_identification_number',
+        'voter_identification_number_country',
+        'electoral_registry_number',
+        'drivers_license_number',
+        'le_number',
+        'un_locode',
+        'aka',
+        'cuit',
+        'cui',
+        'dni',
+        'fka',
+        'nka',
+        'nit',
+        'ssn',
+        'rfc',
+        'programs',
+        'category',
+        'title',
+        'pob',
+        'dob',
+        'gender',
+        'nationality',
+        'additional_sanctions_information',
+        'secondary_sanctions_risk',
+        'executive_order',
+        'citizen'
+    ],
+    individual_contact_info: [
+        'website',
+        'email_address',
+        'telephone',
+        'co',
+        'address'
+    ],
+    individual_actions: [
+        'date',
+        'action',
+        'authority'
+    ],
+    individual_remarks: [
+        'comments'
+    ]
+}
+
+parser.parse('ofac', './data', formatter)
+    .then((results) => {
+        let ind = {};
+        ind.individual = [];
+        ind.individual_attributes = [];
+        ind.individual_contact_info = [];
+        ind.individual_actions = [];
+        ind.individual_remarks = [];
+        results.forEach((result) => {
+            if (result.entity_type === 'individual') {
+                for (const table in ind) {
+                    const newTable = {}
+                    tableKeys[table].forEach((key) => {
+                        if (result[key]) {
+                            newTable[key] = result[key]
+                        }
+                    })
+                    if (Object.keys(newTable).length > 0) {
+                        ind[table].push(newTable)
+                    }
+                }
+            }
+        })
+        // for (const table in ind) {
+            fs.writeFile(`./json/individuals.json`, JSON.stringify(ind, null, "\t"), (err) => {
+                if (err) {
+                    throw err;
+                };
+                console.log(`Created individuals.json successfully`);
+            })
+        // }
+    })
